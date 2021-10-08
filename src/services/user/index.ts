@@ -1,6 +1,6 @@
 import express, { request } from 'express'
 import UserModel from './schema.js'
-import createError from 'http-errors'
+import createHttpError from 'http-errors'
 import { JWTMiddleware } from '../../auth/token.js'
 import AccommodationModel from '../accommodation/schema.js'
 import { JWTAuthenticate } from '../../auth/tools.js'
@@ -34,7 +34,7 @@ UsersRouter.post('/register', async (req, res, next) => {
     const token = await JWTAuthenticate(savedUser)
     res.status(201).send({token, user: savedUser})
   } catch (error) {
-    next(createError(400, error))
+    next(createHttpError(400, error))
   }
 })
 

@@ -1,4 +1,7 @@
-export const unauthorizedHandler = (err, req, res, next) => {
+import { Request, Response, NextFunction } from "express"
+
+
+export const unauthorizedHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
   if (err.status === 401) {
     res
       .status(401)
@@ -11,7 +14,7 @@ export const unauthorizedHandler = (err, req, res, next) => {
   }
 }
 
-export const forbiddenHandler = (err, req, res, next) => {
+export const forbiddenHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
   if (err.status === 403) {
     res
       .status(403)
@@ -24,7 +27,7 @@ export const forbiddenHandler = (err, req, res, next) => {
   }
 }
 
-export const catchAllHandler = (err, req, res, next) => {
+export const catchAllHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
   console.log(err)
   res.status(500).send({ status: 'error', message: 'Generic Server Error' })
 }

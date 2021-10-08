@@ -1,8 +1,9 @@
 import createHttpError from 'http-errors'
 import { verifyJWT } from './tools.js'
 import UserModel from '../services/user/schema.js'
+import { Request, Response, NextFunction } from "express"
 
-export const JWTMiddleware = async (req, res, next) => {
+export const JWTMiddleware = async (req: Request, res: Response, next: NextFunction) => {
   if (!req.headers.authorization) {
     next(createHttpError(401, 'Header not found'))
   } else {
